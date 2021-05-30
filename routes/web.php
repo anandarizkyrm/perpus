@@ -19,9 +19,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
+
+//resource root
+
+Route::resource('user', 'UserController');
