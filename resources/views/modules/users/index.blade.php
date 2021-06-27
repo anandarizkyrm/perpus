@@ -14,7 +14,10 @@
             <!-- Approach -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">List Data User</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        List Data User
+                        <a href="{{route('user.create') }}" class='btn btn-success float-right'>Tambah Data</a>
+                    </h6>
                 </div>
                 <div class="card-body">
                         <table class="table bordered">

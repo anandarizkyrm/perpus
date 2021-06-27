@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class UserController extends Controller
 {
@@ -24,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('modules.users.create');
     }
 
     /**
@@ -35,7 +37,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        User::create($request->all());
+
+        Alert::success('Data Berhasil Di input', 'success');
+        return redirect()->route('user.index');
+
     }
 
     /**
