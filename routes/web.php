@@ -31,3 +31,4 @@ Route::get('/about', function () {
 //resource root
 
 Route::resource('user', 'UserController');
+Route::get('cetak-user', 'UserController@print')->name('print.user');

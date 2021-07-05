@@ -16,7 +16,11 @@
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
                         List Data User
-                        <a href="{{route('user.create') }}" class='btn btn-success float-right'>Tambah Data</a>
+
+                            <a href="{{route('user.create') }}" class='btn btn-success btn-sm float-right'>Tambah Data</a>
+                            <a href="{{route('print.user') }}" class='btn btn-sm btn-warning float-right mr-1 '>Cetak Data</a>
+
+
                     </h6>
                 </div>
                 <div class="card-body">
@@ -30,11 +34,15 @@
                             @foreach ($user as $n)
                                     <tr>
                                         <td>{{$n->id}}</td>
-                                        <td>{{$n->name}}</td>
+                                        <td>{{$n->name }} {{$n->last_name}}</td>
                                         <td>{{$n->email}}</td>
                                         <td>
-                                            <a href="" class="btn btn-warning btn-sm">EDIT</a>
-                                            <a href="" class="btn btn-danger btn-sm">HAPUS</a>
+                                            <form method="POST" action="{{route('user.destroy',$n->id)}}" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{route('user.edit',$n->id)}}" class="btn btn-warning btn-sm">EDIT</a>
+                                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                            </form>
                                         </td>
                                     </tr>
                             @endforeach
