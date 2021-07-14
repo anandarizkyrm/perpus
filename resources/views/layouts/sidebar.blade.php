@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="{{ route('home') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-book"></i>
         </div>
@@ -26,8 +26,8 @@
         Master Data
     </div>
     <!-- Heading -->
-    <li class="nav-item {{ Nav::isRoute('home') }}">
-        <a class="nav-link" href="{{ route('home') }}">
+    <li class="nav-item  {{ Nav::isRoute(['buku.*']) }}">
+        <a class="nav-link" href="{{ route('buku.index') }}">
             <i class="fas fa-fw fa-book"></i>
             <span>Data Buku</span></a>
     </li>

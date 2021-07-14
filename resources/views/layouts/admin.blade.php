@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Perpustakaan</title>
 
     <!-- Fonts -->
     <link href="{{ asset('vendor/fontawesome/css/all.min.css') }}" rel="stylesheet">
@@ -132,7 +132,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Alejandro RH 2020</span>
+                    <span>Ananda Rizky <?= date('Y') ?></span>
                 </div>
             </div>
         </footer>
@@ -178,9 +178,13 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+
 <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.js') }}"></script>
 <script src="{{ asset('vendor/datatables/demo.js') }}"></script>
+
+@stack('js');
 </head>
 
 </body>
