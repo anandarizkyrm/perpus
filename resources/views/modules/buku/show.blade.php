@@ -51,7 +51,7 @@
                             <tr>
                                 <th>Cover Buku</th>
                                 <td>
-                                    <img src="{{asset('cover/'.$buku->cover)}}" width="100" height="100" alt="">
+                                    <img src="{{asset('cover/'.$buku->cover)}}" width="100" height="100" alt=""/>
                                 </td>
                             </tr>
                             <tr>

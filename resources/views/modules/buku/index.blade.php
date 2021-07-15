@@ -17,7 +17,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">
                             List Buku
                             <a href="{{route('buku.create') }}" class='btn btn-success btn-sm float-right'>Tambah Data</a>
-                            <a href="{{route('print.user') }}" class='btn btn-sm btn-warning float-right mr-1 '>Cetak Data</a>
+                            <a href="{{route('print.buku') }}" class='btn btn-sm btn-warning float-right mr-1 '>Cetak Data</a>
 
 
                     </h6>

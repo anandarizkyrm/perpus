@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Html\Builder;
 use App\Buku;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Support\Facades\File;
+use PhpParser\Node\Stmt\TryCatch;
 use Yajra\DataTables\DataTables;
+use RealRashid\SweetAlert\Facades\Alert;
+use PDF;
 
 
 class BukuController extends Controller
@@ -54,9 +59,9 @@ class BukuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Buku $buku)
     {
-        return view('modules.buku.create');
+        return view('modules.buku.create', compact('buku'));
     }
 
     /**
@@ -122,10 +127,11 @@ class BukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Buku $buku)
     {
-        //
+        return view('modules.buku.edit', compact('buku'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -134,9 +140,54 @@ class BukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Buku $buku)
     {
-        //
+
+        $this->validate($request, [
+            'judul' => 'required',
+            'cover' => 'nullable|mimes:png,jpg,jpeg|max:1025',
+        ],
+        [
+            'judul.required'=> "Judul tidak boleh Kosong",
+            'cover.required'=> "Masukan Cover",
+            'cover.mimes' => "File tidak Support",
+            'cover.max' => "Batas Maksimum upload adalah 1 mb"
+        ]
+    );
+
+        $nama_cover = $buku->cover ;
+        if($request->hasFile('cover')){
+            $fileupload = $request->file('cover');
+            $extension = $fileupload->getClientOriginalExtension();
+            $nama_cover = md5(time()).'.'.$extension;
+            $destination = public_path().DIRECTORY_SEPARATOR.'cover';
+
+            if($buku->cover != ''){
+                $oldpic = $buku->cover;
+                $filepath = public_path().DIRECTORY_SEPARATOR.'cover'.DIRECTORY_SEPARATOR.$oldpic;
+                try{
+                    File::delete($filepath);
+                }
+                catch(FileNotFoundException $file){
+                    dd($file);
+                }
+            }
+            $fileupload->move($destination, $nama_cover);
+        }
+        $buku->update([
+            'judul' => $request->judul,
+            'isbn'  => $request->isbn,
+            'penerbit'  => $request->penerbit,
+            'tahun_terbit'  => $request->tahun_terbit,
+            'jumlah'  => $request->jumlah,
+            'deskripsi'  => $request->deskripsi,
+            'lokasi'  => $request->lokasi,
+            'cover'  => $nama_cover
+        ]);
+
+        toast('Berhasil Mengubah Data', 'info');
+        return redirect()->route('buku.index');
+
     }
 
     /**
@@ -145,8 +196,28 @@ class BukuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Buku $buku)
     {
-        //
+        if($buku->cover != ''){
+            $oldpic = $buku->cover;
+            $filepath = public_path().DIRECTORY_SEPARATOR.'cover'.DIRECTORY_SEPARATOR.$oldpic;
+            try{
+                File::delete($filepath);
+            }
+            catch(FileNotFoundException $file){
+                dd($file);
+            }
+        }
+
+        $buku->destroy($buku->id);
+        Alert::success('User Berhasil Di Hapus', 'success');
+        return redirect()->route('user.index');
+    }
+
+    public function print(){
+        $buku= Buku::all();
+        $pdf = PDF::loadView('modules.buku.print', compact('buku'));
+        return $pdf->stream('data buku keseluruhan.pdf');
+
     }
 }

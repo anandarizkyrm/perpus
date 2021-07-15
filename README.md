@@ -45,31 +45,46 @@ Laravel SB Admin 2 uses some open-source third-party libraries/packages, many th
 
 `login`
 
-<img src="https://imgur.com/YjGp6Sbl.png">
-
-***
-
-`register`
-
-<img src="https://imgur.com/Wj09cu4l.png">
+<img src="https://i.imgur.com/QsPQmib.png">
 
 ***
 
 `dashboard`
 
-<img src="https://imgur.com/CrmOfT5l.png">
+<img src="https://i.imgur.com/4z386zw.png">
 
 ***
 
-`profile`
+`data buku`
 
-<img src="https://imgur.com/5t4eS1rl.png">
+<img src="https://i.imgur.com/GzwVLpE.png">
 
 ***
 
-`logout`
+`tambah Data`
 
-<img src="https://imgur.com/d9JclOYl.png">
+<img src="https://i.imgur.com/eWFlQvp.png">
+
+***
+
+`cetak Data Buku`
+
+<img src="https://i.imgur.com/v4CavM9.png">
+
+`cetak Data User`
+
+<img src="https://i.imgur.com/3st7L95.png">
+
+`tambah Data user`
+
+<img src="https://i.imgur.com/pSv41tv.png">
+
+
+`Cetak Data user`
+
+<img src="https://i.imgur.com/A3ltRBa.png">
+
+
 
 ## License
 

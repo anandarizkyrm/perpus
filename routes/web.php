@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
     Route::resource('user', 'UserController');
     Route::resource('buku', 'BukuController');
     Route::get('cetak-user', 'UserController@print')->name('print.user');
-    
+    Route::get('cetak-buku', 'BukuController@print')->name('print.buku');
+
 
 });
